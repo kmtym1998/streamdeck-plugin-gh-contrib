@@ -52,7 +52,6 @@
             body: JSON.stringify({}),
           }).then((resp) => {
             resp.json().then((data) => {
-              console.log({ data });
               this.SetTitle(context, data.contributionCount);
               this.SetImage(context, data.contributionLevel);
             });
@@ -95,8 +94,6 @@
             console.warn('unexpected quartile: ' + quartile);
             return;
           }
-
-          console.log({ context });
 
           websocket.send(
             JSON.stringify({
