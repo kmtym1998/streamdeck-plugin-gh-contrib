@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>com.elgato.counter</title>
+    <title>com.elgato.counter-clone</title>
     <meta charset="utf-8" />
   </head>
 
   <body>
     <script>
-      var websocket = null;
-      var pluginUUID = null;
+      let websocket = null;
+      let pluginUUID = null;
+      let timer;
 
-      var DestinationEnum = Object.freeze({
+      const DestinationEnum = Object.freeze({
         HARDWARE_AND_SOFTWARE: 0,
         HARDWARE_ONLY: 1,
         SOFTWARE_ONLY: 2,
       });
 
-      var timer;
-
-      var counterAction = {
+      const counterAction = {
         type: 'com.elgato.counter.action',
 
         onKeyDown: function (context, settings, coordinates, userDesiredState) {
@@ -40,6 +39,8 @@
           }
 
           keyPressCounter++;
+
+          console.log('keyPressCounter: ' + keyPressCounter);
 
           updatedSettings = {};
           updatedSettings['keyPressCounter'] = keyPressCounter;
@@ -82,43 +83,43 @@
         },
       };
 
-      function connectElgatoStreamDeckSocket(
+      const connectElgatoStreamDeckSocket = (
         inPort,
         inPluginUUID,
         inRegisterEvent,
         inInfo,
-      ) {
+      ) => {
         pluginUUID = inPluginUUID;
 
         // Open the web socket
         websocket = new WebSocket('ws://127.0.0.1:' + inPort);
 
-        function registerPlugin(inPluginUUID) {
+        const registerPlugin = (inPluginUUID) => {
           var json = {
             event: inRegisterEvent,
             uuid: inPluginUUID,
           };
 
           websocket.send(JSON.stringify(json));
-        }
+        };
 
-        websocket.onopen = function () {
+        websocket.onopen = () => {
           // WebSocket is connected, send message
           registerPlugin(pluginUUID);
         };
 
-        websocket.onmessage = function (evt) {
+        websocket.onmessage = (evt) => {
           // Received message from Stream Deck
-          var jsonObj = JSON.parse(evt.data);
-          var event = jsonObj['event'];
-          var action = jsonObj['action'];
-          var context = jsonObj['context'];
+          const jsonObj = JSON.parse(evt.data);
+          const event = jsonObj['event'];
+          const action = jsonObj['action'];
+          const context = jsonObj['context'];
 
           if (event == 'keyDown') {
-            var jsonPayload = jsonObj['payload'];
-            var settings = jsonPayload['settings'];
-            var coordinates = jsonPayload['coordinates'];
-            var userDesiredState = jsonPayload['userDesiredState'];
+            const jsonPayload = jsonObj['payload'];
+            const settings = jsonPayload['settings'];
+            const coordinates = jsonPayload['coordinates'];
+            const userDesiredState = jsonPayload['userDesiredState'];
             counterAction.onKeyDown(
               context,
               settings,
@@ -126,10 +127,10 @@
               userDesiredState,
             );
           } else if (event == 'keyUp') {
-            var jsonPayload = jsonObj['payload'];
-            var settings = jsonPayload['settings'];
-            var coordinates = jsonPayload['coordinates'];
-            var userDesiredState = jsonPayload['userDesiredState'];
+            const jsonPayload = jsonObj['payload'];
+            const settings = jsonPayload['settings'];
+            const coordinates = jsonPayload['coordinates'];
+            const userDesiredState = jsonPayload['userDesiredState'];
             counterAction.onKeyUp(
               context,
               settings,
@@ -137,9 +138,9 @@
               userDesiredState,
             );
           } else if (event == 'willAppear') {
-            var jsonPayload = jsonObj['payload'];
-            var settings = jsonPayload['settings'];
-            var coordinates = jsonPayload['coordinates'];
+            const jsonPayload = jsonObj['payload'];
+            const settings = jsonPayload['settings'];
+            const coordinates = jsonPayload['coordinates'];
             counterAction.onWillAppear(context, settings, coordinates);
           }
         };
@@ -147,7 +148,7 @@
         websocket.onclose = function () {
           // Websocket is closed
         };
-      }
+      };
     </script>
   </body>
 </html>

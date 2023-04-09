@@ -12,11 +12,11 @@
       ],
       "SupportedInMultiActions": false,
       "Tooltip": "How many times did you get pwned today? Keep track with this counter.",
-      "UUID": "com.elgato.counter.action"
+      "UUID": "com.elgato.counter.action-clone"
     }
   ],
   "SDKVersion": 2,
-  "Author": "Elgato",
+  "Author": "kmtym1998",
   "CodePath": "code.html",
   "Description": "Track the number of times you press a key.",
   "Name": "Counter",
