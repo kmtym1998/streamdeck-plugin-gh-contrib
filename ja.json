@@ -1,8 +1,8 @@
 {
-  "Description": "Descriptionキーを押す回数を記録。",
-  "Name": "デバッグ用カウンタ",
-  "com.elgato.counter.action-clone": {
-    "Name": "デバッグ用カウンタ actionName",
-    "Tooltip": "TooltipTooltipTooltipTooltipTooltipTooltipTooltipTooltipTooltipTooltip"
+  "Description": "GitHub のコントリビューション数を表示する",
+  "Name": "GitHub コントリビューションカウンタ",
+  "com.elgato.counter.gh-contrib": {
+    "Name": "GitHub コントリビューションカウンタ",
+    "Tooltip": "GitHub のコントリビューション数を表示する"
   }
 }

@@ -11,17 +11,17 @@
         }
       ],
       "SupportedInMultiActions": false,
-      "Tooltip": "How many times did you get pwned today? Keep track with this counter.",
-      "UUID": "com.elgato.counter.action-clone"
+      "Tooltip": "GitHub のコントリビューション数を表示する",
+      "UUID": "com.elgato.counter.gh-contrib"
     }
   ],
   "SDKVersion": 2,
   "Author": "kmtym1998",
   "CodePath": "code.html",
-  "Description": "Track the number of times you press a key.",
+  "Description": "GitHub のコントリビューション数を表示する",
   "Name": "Counter",
   "Icon": "pluginIcon",
-  "URL": "https://www.elgato.com/gaming/stream-deck",
+  "URL": "https://github.com/kmtym1998/streamdeck-plugin-gh-contrib",
   "Version": "1.4",
   "OS": [
     {
