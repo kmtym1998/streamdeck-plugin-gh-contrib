@@ -1,7 +1,7 @@
 {
   "Description": "Descriptionキーを押す回数を記録。",
   "Name": "デバッグ用カウンタ",
-  "com.elgato.counter.action": {
+  "com.elgato.counter.action-clone": {
     "Name": "デバッグ用カウンタ actionName",
     "Tooltip": "TooltipTooltipTooltipTooltipTooltipTooltipTooltipTooltipTooltipTooltip"
   }
